@@ -1,7 +1,13 @@
 <?php
 
 declare(strict_types=1);
-
+/**
+ * This file is part of hyperf-ext/encryption.
+ *
+ * @link     https://github.com/hyperf-ext/encryption
+ * @contact  eric@zhu.email
+ * @license  https://github.com/hyperf-ext/encryption/blob/master/LICENSE
+ */
 namespace HyperfExt\Encryption\Command;
 
 use Hyperf\Command\Command as HyperfCommand;
@@ -33,23 +39,21 @@ class GenKeyCommand extends HyperfCommand
      */
     public function handle()
     {
-        $driverName = $this->choice('Select driver', array_keys($this->config->get('ext-encryption.driver')));
+        $driverName = $this->choice('Select driver', array_keys($this->config->get('encryption.driver')));
 
         $key = $this->generateRandomKey($driverName);
 
-        $this->line('<comment>'.$key.'</comment>');
+        $this->line('<comment>' . $key . '</comment>');
     }
 
     /**
      * Generate a random key for the application.
      *
-     * @param string $driverName
-     *
      * @return string
      */
     protected function generateRandomKey(string $driverName)
     {
-        $config = $this->config->get("ext-encryption.driver.{$driverName}");
+        $config = $this->config->get("encryption.driver.{$driverName}");
         return call([$config['class'], 'generateKey'], [['options' => $config['options']]]);
     }
 }

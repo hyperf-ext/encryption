@@ -18,7 +18,7 @@ composer require hyperf-ext/encryption
 php bin/hyperf.php vendor:publish hyperf-ext/encryption
 ```
 
-> 配置文件位于 `config/autoload/ext-encryption.php`。
+> 配置文件位于 `config/autoload/encryption.php`。
 
 ## 设置
 

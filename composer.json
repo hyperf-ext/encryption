@@ -7,7 +7,7 @@
         "hyperf",
         "encryption"
     ],
-    "description": "The unofficial Hyperf Encryption package.",
+    "description": "The Hyperf Encryption package.",
     "authors": [
         {
             "name": "Eric Zhu",

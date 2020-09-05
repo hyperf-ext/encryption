@@ -1,7 +1,13 @@
 <?php
 
 declare(strict_types=1);
-
+/**
+ * This file is part of hyperf-ext/encryption.
+ *
+ * @link     https://github.com/hyperf-ext/encryption
+ * @contact  eric@zhu.email
+ * @license  https://github.com/hyperf-ext/encryption/blob/master/LICENSE
+ */
 namespace HyperfExt\Encryption;
 
 use Hyperf\Contract\ConfigInterface;
@@ -44,9 +50,7 @@ class EncryptionManager implements EncryptionInterface
     /**
      * Get a driver instance.
      *
-     * @param string|null $name
-     *
-     * @return \HyperfExt\Encryption\Contract\SymmetricDriverInterface|\HyperfExt\Encryption\Contract\AsymmetricDriverInterface
+     * @return \HyperfExt\Encryption\Contract\AsymmetricDriverInterface|\HyperfExt\Encryption\Contract\SymmetricDriverInterface
      */
     public function getDriver(?string $name = null): DriverInterface
     {
@@ -54,9 +58,9 @@ class EncryptionManager implements EncryptionInterface
             return $this->drivers[$name];
         }
 
-        $name = $name ?: $this->config->get('ext-encryption.default', 'aes');
+        $name = $name ?: $this->config->get('encryption.default', 'aes');
 
-        $config = $this->config->get("ext-encryption.driver.{$name}");
+        $config = $this->config->get("encryption.driver.{$name}");
         if (empty($config) or empty($config['class'])) {
             throw new InvalidArgumentException(sprintf('The encryption driver config %s is invalid.', $name));
         }
