@@ -56,8 +56,8 @@ class AesDriver implements SymmetricDriverInterface
     {
         $length = mb_strlen($key, '8bit');
 
-        return ($cipher === 'AES-128-CBC' && $length === 16) ||
-            ($cipher === 'AES-256-CBC' && $length === 32);
+        return ($cipher === 'AES-128-CBC' && $length === 16)
+            || ($cipher === 'AES-256-CBC' && $length === 32);
     }
 
     /**
@@ -190,8 +190,8 @@ class AesDriver implements SymmetricDriverInterface
     protected function validPayload($payload): bool
     {
         try {
-            return is_array($payload) && isset($payload['iv'], $payload['value'], $payload['mac']) &&
-                strlen(base64_decode($payload['iv'], true)) === openssl_cipher_iv_length($this->cipher);
+            return is_array($payload) && isset($payload['iv'], $payload['value'], $payload['mac'])
+                && strlen(base64_decode($payload['iv'], true)) === openssl_cipher_iv_length($this->cipher);
         } catch (\Throwable $exception) {
         }
         return false;
