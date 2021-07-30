@@ -24,7 +24,7 @@ class AesEncryptionTest extends TestCase
     public function testEncryption()
     {
         $e = new AesDriver([
-            'key' => str_repeat('a', 16),
+            'key' => base64_encode(str_repeat('a', 16)),
             'cipher' => 'AES-128-CBC',
         ]);
         $encrypted = $e->encrypt('foo');
@@ -32,21 +32,10 @@ class AesEncryptionTest extends TestCase
         $this->assertSame('foo', $e->decrypt($encrypted));
     }
 
-    public function testRawStringEncryption()
-    {
-        $e = new AesDriver([
-            'key' => str_repeat('a', 16),
-            'cipher' => 'AES-128-CBC',
-        ]);
-        $encrypted = $e->encryptString('foo');
-        $this->assertNotSame('foo', $encrypted);
-        $this->assertSame('foo', $e->decryptString($encrypted));
-    }
-
     public function testEncryptionUsingBase64EncodedKey()
     {
         $e = new AesDriver([
-            'key' => random_bytes(16),
+            'key' => base64_encode(random_bytes(16)),
             'cipher' => 'AES-128-CBC',
         ]);
         $encrypted = $e->encrypt('foo');
@@ -57,7 +46,7 @@ class AesEncryptionTest extends TestCase
     public function testEncryptedLengthIsFixed()
     {
         $e = new AesDriver([
-            'key' => str_repeat('a', 16),
+            'key' => base64_encode(str_repeat('a', 16)),
             'cipher' => 'AES-128-CBC',
         ]);
         $lengths = [];
@@ -70,7 +59,7 @@ class AesEncryptionTest extends TestCase
     public function testWithCustomCipher()
     {
         $e = new AesDriver([
-            'key' => str_repeat('b', 32),
+            'key' => base64_encode(str_repeat('b', 32)),
             'cipher' => 'AES-256-CBC',
         ]);
         $encrypted = $e->encrypt('bar');
@@ -78,7 +67,7 @@ class AesEncryptionTest extends TestCase
         $this->assertSame('bar', $e->decrypt($encrypted));
 
         $e = new AesDriver([
-            'key' => random_bytes(32),
+            'key' => base64_encode(random_bytes(32)),
             'cipher' => 'AES-256-CBC',
         ]);
         $encrypted = $e->encrypt('foo');
@@ -92,7 +81,7 @@ class AesEncryptionTest extends TestCase
         $this->expectExceptionMessage('The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths.');
 
         new AesDriver([
-            'key' => str_repeat('z', 32),
+            'key' => base64_encode(str_repeat('z', 32)),
             'cipher' => 'AES-128-CBC',
         ]);
     }
@@ -103,7 +92,7 @@ class AesEncryptionTest extends TestCase
         $this->expectExceptionMessage('The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths.');
 
         new AesDriver([
-            'key' => str_repeat('a', 5),
+            'key' => base64_encode(str_repeat('a', 5)),
             'cipher' => 'AES-128-CBC',
         ]);
     }
@@ -114,7 +103,7 @@ class AesEncryptionTest extends TestCase
         $this->expectExceptionMessage('The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths.');
 
         new AesDriver([
-            'key' => str_repeat('a', 16),
+            'key' => base64_encode(str_repeat('a', 16)),
             'cipher' => 'AES-256-CFB8',
         ]);
     }
@@ -125,7 +114,7 @@ class AesEncryptionTest extends TestCase
         $this->expectExceptionMessage('The only supported ciphers are AES-128-CBC and AES-256-CBC with the correct key lengths.');
 
         new AesDriver([
-            'key' => str_repeat('c', 16),
+            'key' => base64_encode(str_repeat('c', 16)),
             'cipher' => 'AES-256-CFB8',
         ]);
     }
@@ -136,7 +125,7 @@ class AesEncryptionTest extends TestCase
         $this->expectExceptionMessage('The payload is invalid.');
 
         $e = new AesDriver([
-            'key' => str_repeat('a', 16),
+            'key' => base64_encode(str_repeat('a', 16)),
             'cipher' => 'AES-128-CBC',
         ]);
         $payload = $e->encrypt('foo');
@@ -150,11 +139,11 @@ class AesEncryptionTest extends TestCase
         $this->expectExceptionMessage('The MAC is invalid.');
 
         $a = new AesDriver([
-            'key' => str_repeat('a', 16),
+            'key' => base64_encode(str_repeat('a', 16)),
             'cipher' => 'AES-128-CBC',
         ]);
         $b = new AesDriver([
-            'key' => str_repeat('b', 16),
+            'key' => base64_encode(str_repeat('b', 16)),
             'cipher' => 'AES-128-CBC',
         ]);
         $b->decrypt($a->encrypt('baz'));
@@ -166,7 +155,7 @@ class AesEncryptionTest extends TestCase
         $this->expectExceptionMessage('The payload is invalid.');
 
         $e = new AesDriver([
-            'key' => str_repeat('a', 16),
+            'key' => base64_encode(str_repeat('a', 16)),
             'cipher' => 'AES-128-CBC',
         ]);
         $payload = $e->encrypt('foo');
