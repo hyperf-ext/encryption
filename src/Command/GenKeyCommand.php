@@ -54,6 +54,6 @@ class GenKeyCommand extends HyperfCommand
     protected function generateRandomKey(string $driverName)
     {
         $config = $this->config->get("encryption.driver.{$driverName}");
-        return call([$config['class'], 'generateKey'], [['options' => $config['options']]]);
+        return call([$config['class'], 'generateKey'], [$config['options']]);
     }
 }
