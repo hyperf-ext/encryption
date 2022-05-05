@@ -1,5 +1,5 @@
 {
-    "name": "hyperf-ext/encryption",
+    "name": "233cy/encryption",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -7,7 +7,7 @@
         "hyperf",
         "encryption"
     ],
-    "description": "The Hyperf Encryption package.",
+    "description": "临时包，适用于HYPERF3系列",
     "authors": [
         {
             "name": "Eric Zhu",
