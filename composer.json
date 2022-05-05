@@ -1,5 +1,5 @@
 {
-    "name": "hyperf-ext/encryption",
+    "name": "233cy/encryption",
     "type": "library",
     "license": "MIT",
     "keywords": [
@@ -7,7 +7,7 @@
         "hyperf",
         "encryption"
     ],
-    "description": "The Hyperf Encryption package.",
+    "description": "临时包，适用于HYPERF3系列",
     "authors": [
         {
             "name": "Eric Zhu",
@@ -34,13 +34,13 @@
         "ext-mbstring": "*",
         "ext-openssl": "*",
         "ext-swoole": ">=4.5",
-        "hyperf/command": "~2.2.0",
-        "hyperf/di": "~2.2.0",
-        "hyperf/framework": "~2.2.0"
+        "hyperf/command": "~3.0.0",
+        "hyperf/di": "~3.0.0",
+        "hyperf/framework": "~3.0.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
-        "hyperf/testing": "~2.2.0",
+        "hyperf/testing": "~3.0.0",
         "limingxinleo/happy-join-hyperf": "^1.0",
         "phpstan/phpstan": "^0.12",
         "swoole/ide-helper": "dev-master"
