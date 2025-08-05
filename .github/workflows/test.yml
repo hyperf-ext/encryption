@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        php-version: [ '7.3', '7.4' ]
-        swoole-version: [ '4.6.2', '4.5.11' ]
+        php-version: [ '8.1' ]
+        swoole-version: [ '4.8.13' ]
       max-parallel: 4
     steps:
       - name: Checkout
