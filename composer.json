@@ -1,5 +1,5 @@
 {
-    "name": "richard8768/encryption",
+    "name": "hyperf-ext/encryption",
     "type": "library",
     "license": "MIT",
     "keywords": [
